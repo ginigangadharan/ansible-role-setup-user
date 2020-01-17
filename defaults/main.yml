@@ -1,0 +1,3 @@
+---
+# defaults file for setup-ansible-user
+remote_user: devops
