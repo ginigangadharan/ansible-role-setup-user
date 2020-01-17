@@ -1,31 +1,51 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+A simple role to deploy a user for ansible on managed node.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Access to remove machine with sudo or root access.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```
+# username to be created on remote machine for ansible
+remote_user: devops
+
+# public key string for same user
+remote_user_public_key: <public key string>
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Call the role with username and public key and use it with privileged user for first time as below.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
+ansible-playbook setup-ansible.yaml -b -K -k -u root
+```
+
+**Sample playbook**
+```
+- hosts: servers
+  become: true
+  vars_files:
+  vars:
+    remote_user: devops
+    remote_user_public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPCgWXeSm2t9XJrvCMPMpr0TmhOvnS0e0kax05EeSLXTc98dv4ewP+9Mvc2Vl+2LifAK/FXZlpzexQugnHJ8oUbfjxiD0ZEQQhpV1pLkHp4zDyl4p+fneMtahCYhqkI0YPpN/RCGTxrWxppc65NXaHOGvt9O7bKJCQyR0LvUHbXUw4dqgd5OB2FxL6h0hbe4XxFgJ3Cl7GlSDe3ly14Tdh4ZdvqDxAbtGly1q9HHInWhBxFOpIFrKmN7d6+NhiJK0i5/a8MMmAaGvI0x5pSmM5Ehg+sns11gnt8tvt8MLdHI2SuTiBDLepkgF5CPc2lScH/lkiUbmvqIVKYlddhuKR devops@vm-towernode-10.lab.local'
+  roles:
+    - { role: setup-ansible-user }
+
+```
+
 
 License
 -------
@@ -35,4 +55,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created by [Gini](https://www.iamgini.com).
