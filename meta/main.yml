@@ -7,11 +7,9 @@ galaxy_info:
   company: techbeatly.com
   license: license (BSD)
   min_ansible_version: 2.0
-
  - name: EL
     versions:
     - 6
     - 7
-
   galaxy_tags: 
-    - ansible setup
+    - ansible
