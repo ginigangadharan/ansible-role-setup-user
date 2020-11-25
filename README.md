@@ -13,9 +13,11 @@ Role Variables
 
 ```
 # username to be created on remote machine for ansible
-remote_user: devops
+remote_user_name: 'devops'
+remote_user_password: 'mypassword'
 
-# public key string for same user
+# public key string for same user.
+# if not provided, role will skip adding public key to target machine.
 remote_user_public_key: <public key string>
 ```
 
@@ -27,25 +29,24 @@ None
 Example Playbook
 ----------------
 
-Call the role with username and public key and use it with privileged user for first time as below.
-
-```
-ansible-playbook setup-ansible.yaml -b -K -k -u root
-```
-
 **Sample playbook**
 ```
 - hosts: servers
   become: true
-  vars_files:
   vars:
-    remote_user: devops
+    remote_user_name: 'devops'
+    remote_user_password: 'mypassword'
     remote_user_public_key: '<public key string>'
   roles:
-    - { role: setup-ansible-user }
+    - { role: ginigangadharan.setup_ansible_user }
 
 ```
 
+Use it with privileged user for first time as below.
+
+```
+ansible-playbook setup-ansible.yaml -b -K -k -u root
+```
 
 License
 -------
