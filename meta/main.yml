@@ -14,8 +14,8 @@ galaxy_info:
     - 7
   galaxy_tags: 
     - ansible
-    - new user
-    - ansible setup
+    - user
+    - setup
     - server
-    - managed node
+    - node
     - system

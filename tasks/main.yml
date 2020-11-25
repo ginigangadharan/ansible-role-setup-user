@@ -3,7 +3,7 @@
 - name: Create new user on managed node
   user:
     name: "{{ remote_user_name }}"
-    password : "{{ remote_user_password | password_hash('sha512') }}"
+    password: "{{ remote_user_password | password_hash('sha512') }}"
     groups: wheel
     append: yes
 
