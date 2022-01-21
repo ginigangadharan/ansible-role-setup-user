@@ -1,5 +1,5 @@
 ---
-# tasks file for setup-ansible-user
+# tasks file for ansible-role-setup-user
 - name: Create new user on managed node
   user:
     name: "{{ remote_user_name }}"
